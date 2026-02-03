@@ -1,26 +1,13 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer } = require("apollo-server");
 
-// Schema mínimo
-const typeDefs = gql`
-  type Query {
-    status: String!
-  }
-`;
+const typeDefs = require("./schema/schema");
+const resolvers = require("./resolvers/livrosResolvers");
 
-// Resolvers
-const resolvers = {
-  Query: {
-    status: () => "🟢 API Meu Pequeno Grimório está viva",
-  },
-};
-
-// Server
 const server = new ApolloServer({
   typeDefs,
   resolvers,
 });
 
-// Start
 server.listen({ port: 4000 }).then(({ url }) => {
-  console.log(`🚀 Servidor GraphQL rodando em ${url}`);
+  console.log(`📚 API Meu Pequeno Grimório rodando em ${url}`);
 });
