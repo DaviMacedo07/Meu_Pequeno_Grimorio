@@ -23,6 +23,22 @@ const typeDefs = gql`
     livroPorId(id: ID!): Livro
     livrosPorCategoria(categoria: CategoriaLivro!): [Livro!]!
   }
+    enum Role {
+  ADMIN
+  USER
+}
+
+type AuthPayload {
+  token: String!
+}
+
+type Mutation {
+  login(username: String!, password: String!): AuthPayload!
+}
+
 `;
+
+
+
 
 module.exports = typeDefs;
