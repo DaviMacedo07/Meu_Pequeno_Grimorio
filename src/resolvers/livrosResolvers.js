@@ -24,7 +24,7 @@ const livrosResolvers = {
       return livros.find((livro) => livro.id === id);
     },
 
-    livrosPorCategoria: (_, { categoria }) => {
+    livrosPorCategoria: (_, { categoria }) => {z
       return livros.filter((livro) => livro.categoria === categoria);
     },
   },
