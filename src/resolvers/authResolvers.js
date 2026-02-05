@@ -1,18 +1,17 @@
-const usuarios = require("../data/usuarios");
+const { AuthenticationError } = require("apollo-server");
 const { gerarToken } = require("../auth/auth");
 
 const authResolvers = {
   Mutation: {
     login: (_, { username, password }) => {
-      const usuario = usuarios.find(
-        (u) => u.username === username && u.password === password
-      );
 
-      if (!usuario) {
-        throw new Error("Credenciais inválidas");
+      // 🔒 Credenciais mockadas (MVP)
+      if (username !== "admin" || password !== "123") {
+        throw new AuthenticationError("Credenciais inválidas");
       }
 
-      const token = gerarToken(usuario);
+      // 🔐 Token centralizado
+      const token = gerarToken({ username });
 
       return { token };
     },
